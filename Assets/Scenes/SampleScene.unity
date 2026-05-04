@@ -1156,8 +1156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c548a07e5df9c240a4d38656db886a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  groundDecay: 1
+  speed: 4
+  groundDecay: 0.701
   body: {fileID: 1974366795}
   groundCheck: {fileID: 142740031}
   groundMask:
