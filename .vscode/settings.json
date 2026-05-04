@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "CollabJam2026-main.slnx",
+    "dotnet.defaultSolution": "CollabJam2026.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
