@@ -1,5 +1,3 @@
-using System.Numerics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class walk : MonoBehaviour
@@ -33,9 +31,8 @@ void FixedUpdate(){
 }
 
 void GetInput(){
-    xInput = Input.GetAxis("Horizontal");
-    yInput = Input.GetAxis("Vertical");
-
+    xInput = Input.GetAxisRaw("Horizontal");
+    yInput = Input.GetAxisRaw("Vertical");
 }
     
 void MoveWithInput(){
