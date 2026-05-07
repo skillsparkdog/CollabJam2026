@@ -11,7 +11,8 @@ public class tumble : MonoBehaviour
     public Rigidbody2D body;
     [Range(0, 10f)]
     float tumbleThreshold;
-    
+    float tumbleTimer;
+public float tumbleDelay = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,14 +24,25 @@ public class tumble : MonoBehaviour
     void Update()
     {
       GetTumbling();
-      CheckGround();
-   if (isTumbling && yInput > 0)      
+      GetInput();
+    
+if (isTumbling) {
+    tumbleTimer += Time.deltaTime;
+}
+   if (isTumbling && tumbleTimer >= tumbleDelay && yInput > 0)      
 {
-    body.angularVelocity = 0f;
-    // trigger getup animation
-
+    body.rotation = 0f;
+body.angularVelocity = 0f;
+tumbleTimer = 0f;
     }
  }
+
+
+
+
+
+
+ 
 void CheckGround(){
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
 }
@@ -52,11 +64,15 @@ void GetSideways()
 void GetTumbling()
     {
         float angle = body.rotation % 360;
-    if (angle < 0) angle += 360; // normalize negative angles
+if (angle < 0) angle += 360;
 
-    bool isUpright = angle < 30f || angle > 330f;
+bool isUpright = angle < 30f || angle > 330f;
+bool isSpinning = Mathf.Abs(body.angularVelocity) > tumbleThreshold;
 
-    if (!isUpright)
+
+if (!isUpright || isSpinning)
     isTumbling = true;
+else if (isUpright && !isSpinning)
+    isTumbling = false;
 }
 }
